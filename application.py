@@ -33,7 +33,7 @@ def processRequest(req):
     if req.get("queryResult").get("action") == "Postal_code":
         pcode=req.get("queryResult").get("parameters").get("postalcode")
         if(pcode!= None):
-            yql_url = "https://api.postcodes.io/postcodes/"+ pcode
+            yql_url = "http://api.postcodes.io/postcodes/"+ pcode
             # yql_url = getBaseUrl()
             result = urlopen(yql_url).read()
             data = json.loads(result)
