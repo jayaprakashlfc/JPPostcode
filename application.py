@@ -30,20 +30,20 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("queryResult").get("action") != "postalcode":
+    if req.get("queryResult").get("action") == "Postal_code":
         pcode=req.get("queryResult").get("parameters").get("postalcode")
         if(pcode!= None):
-            yql_url = "api.postcodes.io/postcodes/"+"pcode";
-        #yql_url = getBaseUrl()
-        result = urlopen(yql_url).read()
-        data = json.loads(result)
-        res = makeWebhookResult(data)
+            yql_url = getBaseUrl()+ "pcode"
+            # yql_url = getBaseUrl()
+            result = urlopen(yql_url).read()
+            data = json.loads(result)
+            res = makeWebhookResult(data)
         return res
     else:
         return {}
 
-##def getBaseUrl():
-  ##  baseurl = "api.postcodes.io/postcodes/pcode"
+def getBaseUrl():
+   baseurl = "https://api.postcodes.io/postcodes/"
 
 def makeWebhookResult(data):
   #  kuralSet = data.get('KuralSet')
